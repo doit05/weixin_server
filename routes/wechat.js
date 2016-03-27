@@ -33,8 +33,8 @@ router.use('/', wechat(config, function (req, res, next) {
         // 回复高富帅(图文回复)
         res.reply([
             {
-                title: '你来我家接我吧',
-                description: '这是女神与高富帅之间的对话',
+                title: '你来接我吧',
+                description: ' ' + req,
                 picurl: 'https://mmbiz.qlogo.cn/mmbiz/iauSARNPGRmp1oVdTGVQzJaZWJyxmQfkq7uoyNH7IYqoWRMa0kCAqaSh9ib4A2a064lJQQC8LSJftXJ1nialicYB6w/0?wx_fmt=jpeg',
                 url: 'http://mp.weixin.qq.com/s?__biz=MzIyNDA2ODg0Ng==&mid=404282742&idx=1&sn=447837bf378f863b0f6cf88e5c7f8df5#rd'
             }
