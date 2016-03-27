@@ -1,5 +1,6 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express'),
+    router = express.Router(),
+    log = require('console').log;
 
 var wechat = require('wechat');
 var config = require('../config.js');
@@ -8,7 +9,11 @@ var config = require('../config.js');
 router.use('/', wechat(config, function (req, res, next) {
     // 微信输入信息都在req.weixin上
     var message = req.weixin;
+    try{
+        log("req: ");
     console.info(req);
+    log('-------------------');
+    log("res");
     console.log(res);
     if (message.FromUserName === 'diaosi') {
         // 回复屌丝(普通回复)
@@ -41,6 +46,11 @@ router.use('/', wechat(config, function (req, res, next) {
                 url: 'http://mp.weixin.qq.com/s?__biz=MzIyNDA2ODg0Ng==&mid=404282742&idx=1&sn=447837bf378f863b0f6cf88e5c7f8df5#rd'
             }
         ]);
+    }
+
+    }catch(err){
+        console.log(err);
+        throw err;
     }
 }));
 
