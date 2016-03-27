@@ -15,16 +15,33 @@ router.use('/', wechat(config, function (req, res, next) {
     log('-------------------');
     log("res");
     console.log(res);
-    if (message.FromUserName === 'diaosi') {
+    if (message.MsgType === 'text') {
         // 回复屌丝(普通回复)
-        res.reply('hehe');
-    } else if (message.FromUserName === 'text') {
+        // res.reply('hehe');
         //你也可以这样回复text类型的信息
         res.reply({
             content: 'text object',
             type: 'text'
         });
-    } else if (message.FromUserName === 'hehe') {
+    } else if (message.MsgType === 'image') {
+        //图片消息
+    } else if (message.MsgType === 'voice') {
+        //语音消息
+    }else if (message.MsgType === 'shortvideo') {
+        //语音消息
+    }else if (message.MsgType === 'video') {
+        // 视频消息
+        res.reply({
+            type: "music",
+            content: {
+                title: "来段视频吧",
+                description: "一无所有",
+                musicUrl: "http://",
+                hqMusicUrl: "http://mp3.com/xx.video",
+                thumbMediaId: "thisThumbMediaId"
+            }
+        });
+    }else if (message.MsgType === 'location') {
         // 回复一段音乐
         res.reply({
             type: "music",
@@ -36,7 +53,11 @@ router.use('/', wechat(config, function (req, res, next) {
                 thumbMediaId: "thisThumbMediaId"
             }
         });
-    } else {
+    }else if (message.MsgType === 'link') {
+        //语音消息
+    }else if (message.MsgType === 'device_text') {
+        //设备消息消息
+    }else {
         // 回复高富帅(图文回复)
         res.reply([
             {
@@ -47,7 +68,6 @@ router.use('/', wechat(config, function (req, res, next) {
             }
         ]);
     }
-
     }catch(err){
         console.log(err);
         throw err;
